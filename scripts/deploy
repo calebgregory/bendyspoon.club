@@ -1,0 +1,13 @@
+#!/usr/bin bash
+
+DIR=`dirname $BASH_SOURCE[0]`
+SRC=$DIR/../src
+DIST=$DIR/../dist
+
+mkdir $DIST
+
+cp -r $SRC/* $DIST
+
+aws s3 sync $DIST s3://bendyspoon.club
+
+rm -rf $DIST
